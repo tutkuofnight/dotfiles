@@ -1,6 +1,4 @@
-#!/usr/bin/env bash
-
+#!/bin/bash
 killall -q polybar
-sleep 0.5
-
-polybar main &
+while pgrep -u $UID -x polybar >/dev/null; do sleep 0.1; done
+polybar --reload toph &

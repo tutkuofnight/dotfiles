@@ -2,31 +2,37 @@
 # VARIABLES
 # ==============================
 set $mod Mod4
-set $terminal alacritty
+set $terminal kitty
 set $fileManager nautilus
-set $menu rofi -show drun
 
 # ==============================
 # LOOK & FEEL
 # ==============================
 gaps inner 5
-gaps outer 2
+gaps outer 0
 
 default_border pixel 1
 default_floating_border pixel 1
 
-client.focused #ff4444 #8b0000 #ffffff #ff4444
-client.unfocused #3a0000 #3a0000 #aaaaaa #3a0000
+# class                 border    backgr.   text      indicator child_border
+client.focused          #458588   #076678   #ebdbb2   #83a598   #458588
+client.focused_inactive #3c3836   #504945   #bdae93   #3c3836   #3c3836
+client.unfocused        #282828   #1d2021   #928374   #282828   #1d2021
+client.urgent           #cc241d   #9d0006   #ebdbb2   #cc241d   #cc241d
+client.placeholder      #1d2021   #1d2021   #504945   #1d2021   #1d2021
+client.background       #282828
 
 # ==============================
 # MONITORS
 # ==============================
-exec_always --no-startup-id xrandr \
-  --output HDMI-0 --primary --mode 1920x1080 --rate 144 \
-  --output eDP-1-1 --auto --left-of HDMI-1-0
-exec_always --no-startup-id feh --bg-fill ~/Pictures/wpp2.jpg
+exec_always --no-startup-id xrandr --output HDMI-0 --primary --mode 1920x1080 --rate 144 --output DP-2 --mode 1920x1080 --rate 300.00 --left-of HDMI-0
+exec_always --no-startup-id feh --bg-fill ~/Pictures/Minimal_Squares.png
+exec_always killall polybar
 exec_always --no-startup-id ~/.config/polybar/launch.sh
-exec_always --no-startup-id xrdb ~/.Xresources
+exec_always --no-startup-id xrdb -merge ~/.Xresources
+exec_always --no-startup-id xsetroot -cursor_name left_ptr
+exec_always --no-startup-id autotiling
+exec_always --no-startup-id flameshot
 # ==============================
 # AUTOSTART (exec-once)
 # ==============================
@@ -51,7 +57,7 @@ exec --no-startup-id xinput --set-prop "Razer Razer DeathAdder V2 Mini" "libinpu
 # ==============================
 
 # Terminal
-bindsym $mod+Return exec $terminal
+bindsym $mod+t exec $terminal
 
 # Kill window
 bindsym $mod+e kill
@@ -61,12 +67,11 @@ bindsym $mod+m exec "i3-msg exit"
 
 # File manager
 bindsym $mod+b exec $fileManager
-bindysym $mod+t exec $terminal
 # Floating toggle
 bindsym $mod+v floating toggle
 
 # Launcher
-bindsym $mod+r exec $menu
+bindsym $mod+g exec "rofi -show drun"
 
 # Focus movement
 bindsym $mod+Left focus left
@@ -79,28 +84,28 @@ bindsym $mod+Down focus down
 # ==============================
 
 # Switch workspace
-bindsym Alt+1 workspace 1
-bindsym Alt+2 workspace 2
-bindsym Alt+3 workspace 3
-bindsym Alt+4 workspace 4
-bindsym Alt+5 workspace 5
-bindsym Alt+6 workspace 6
-bindsym $mod+7 workspace 7
-bindsym $mod+8 workspace 8
-bindsym $mod+9 workspace 9
-bindsym $mod+0 workspace 10
+bindsym Mod1+1 workspace 1
+bindsym Mod1+2 workspace 2
+bindsym Mod1+3 workspace 3
+bindsym Mod1+4 workspace 4
+bindsym Mod1+5 workspace 5
+bindsym Mod1+6 workspace 6
+bindsym Mod1+7 workspace 7
+bindsym Mod1+8 workspace 8
+bindsym Mod1+9 workspace 9
+bindsym Mod1+0 workspace 10
 
 # Move window
-bindsym $mod+Shift+1 move container to workspace 1
-bindsym $mod+Shift+2 move container to workspace 2
-bindsym $mod+Shift+3 move container to workspace 3
-bindsym $mod+Shift+4 move container to workspace 4
-bindsym $mod+Shift+5 move container to workspace 5
-bindsym $mod+Shift+6 move container to workspace 6
-bindsym $mod+Shift+7 move container to workspace 7
-bindsym $mod+Shift+8 move container to workspace 8
-bindsym $mod+Shift+9 move container to workspace 9
-bindsym $mod+Shift+0 move container to workspace 10
+bindsym Mod1+Shift+1 move container to workspace 1
+bindsym Mod1+Shift+2 move container to workspace 2
+bindsym Mod1+Shift+3 move container to workspace 3
+bindsym Mod1+Shift+4 move container to workspace 4
+bindsym Mod1+Shift+5 move container to workspace 5
+bindsym Mod1+Shift+6 move container to workspace 6
+bindsym Mod1+Shift+7 move container to workspace 7
+bindsym Mod1+Shift+8 move container to workspace 8
+bindsym Mod1+Shift+9 move container to workspace 9
+bindsym Mod1+Shift+0 move container to workspace 10
 
 # Scroll workspace
 bindsym $mod+button4 workspace next
@@ -149,4 +154,5 @@ bindsym XF86AudioPause exec playerctl play-pause
 # ==============================
 
 # Hyprland run benzeri
+focus_on_window_activation urgent
 for_window [class="hyprland-run"] floating enable, move position 20 ppt 90 ppt
