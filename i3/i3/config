@@ -26,28 +26,33 @@ client.background       #282828
 # MONITORS
 # ==============================
 exec_always --no-startup-id xrandr --output HDMI-0 --primary --mode 1920x1080 --rate 144 --output DP-2 --mode 1920x1080 --rate 300.00 --left-of HDMI-0
-exec_always --no-startup-id feh --bg-fill ~/Pictures/Minimal_Squares.png
+# ==============================
+# AUTOSTART (exec-once)
+# ==============================
+exec_always --no-startup-id feh --bg-fill ~/Pictures/wpp2.png
 exec_always killall polybar
 exec_always --no-startup-id ~/.config/polybar/launch.sh
 exec_always --no-startup-id xrdb -merge ~/.Xresources
 exec_always --no-startup-id xsetroot -cursor_name left_ptr
 exec_always --no-startup-id autotiling
 exec_always --no-startup-id flameshot
-# ==============================
-# AUTOSTART (exec-once)
-# ==============================
+
+exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ 100%
+exec --no-startup-id blueman-applet
 exec --no-startup-id mak
 exec --no-startup-id picom
 exec --no-startup-id kdeconnect-indicator
-
+exec --no-startup-id vesktop
+exec --no-startup-id i3-msg 'workspace 1; workspace 2; workspace 3; workspace 4; workspace 5; workspace 2'
 # Clipboard
 exec --no-startup-id clipmenud
 
 # ==============================
 # INPUT
 # ==============================
+
 # US + TR layout toggle (SUPER + SPACE)
-exec --no-startup-id setxkbmap -layout "us,tr" -option "grp:super_space_toggle"
+exec_always --no-startup-id setxkbmap -layout "us,tr" -option "grp:caps_toggle"
 
 exec --no-startup-id xset m 0 0
 exec --no-startup-id xinput --set-prop "Razer Razer DeathAdder V2 Mini" "libinput Accel Profile Enabled" 0, 1
@@ -63,7 +68,8 @@ bindsym $mod+t exec $terminal
 bindsym $mod+e kill
 
 # Exit WM
-bindsym $mod+m exec "i3-msg exit"
+bindsym $mod+m exec "~/.config/polybar/powermenu.sh"
+bindsym $mod+Shift+m exec "i3-ms exit"
 
 # File manager
 bindsym $mod+b exec $fileManager
@@ -78,6 +84,22 @@ bindsym $mod+Left focus left
 bindsym $mod+Right focus right
 bindsym $mod+Up focus up
 bindsym $mod+Down focus down
+
+# ==============================
+# TILING / LAYOUT
+# ==============================
+
+# Fullscreen
+bindsym $mod+f fullscreen toggle
+
+# Layout switching (once parent'a cik, layout uygula, sonra pencereye geri don)
+bindsym $mod+z focus parent; layout tabbed; focus child
+bindsym $mod+q focus parent; layout stacking; focus child
+bindsym $mod+x focus parent; layout toggle split; focus child
+
+# Container navigation (manuel)
+bindsym $mod+a focus parent
+bindsym $mod+Shift+a focus child
 
 # ==============================
 # WORKSPACES
