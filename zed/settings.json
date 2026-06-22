@@ -2,10 +2,83 @@
 // documentation: https://zed.dev/docs/configuring-zed
 
 {
+  "agent_servers": {
+    "kimi": {
+      "type": "registry"
+    },
+    "grok-build": {
+      "type": "registry"
+    },
+    "gemini": {
+      "type": "registry"
+    },
+    "qwen-code": {
+      "type": "registry"
+    },
+    "opencode": {
+      "default_config_options": {
+        "model": "ollama/qwen2.5-coder:7b"
+      },
+      "type": "registry"
+    },
+    "codex-acp": {
+      "type": "registry"
+    },
+    "cline": {
+      "default_config_options": {
+        "model": "qwen/qwen-2.5-72b-instruct"
+      },
+      "type": "registry"
+    },
+    "claude-acp": {
+      "type": "registry"
+    }
+  },
+  "language_models": {
+    "ollama": {
+      "api_url": "http://localhost:11434",
+      "context_window": 8192,
+      "available_models": [
+        {
+          "name": "qwen2.5-coder:7b",
+          "display_name": "Qwen 2.5 Coder 7B",
+          "max_tokens": 8192,
+          "supports_tools": true
+        }
+      ]
+    }
+  },
+  "agent": {
+    "dock": "right",
+    "sidebar_side": "right",
+    "favorite_models": [],
+    "model_parameters": [],
+    "default_model": {
+      "provider": "ollama",
+      "model": "qwen3-coder:latest"
+    }
+  },
+  "cli_default_open_behavior": "existing_window",
+  "outline_panel": {
+    "dock": "left"
+  },
+  "collaboration_panel": {
+    "dock": "left"
+  },
+  "git_panel": {
+    "dock": "left"
+  },
+  "project_panel": {
+    "dock": "left"
+  },
+  "window_decorations": "client",
+  "use_system_window_tabs": false,
+  "bottom_dock_layout": "full",
   "tab_size": 2,
-  "disable_ai": true,
+  "disable_ai": false,
   "vim_mode": true,
   "vim": {
+    "default_mode": "insert",
     "use_system_clipboard": "always"
   },
   "ui_font_family": ".SystemUIFont",
@@ -21,5 +94,5 @@
   "icon_theme": "Material Icon Theme",
   "ui_font_size": 14.0,
   "buffer_font_size": 11.0,
-  "theme": "Catppuccin Espresso (Blur) [Heavy]",
+  "theme": "Colorizer Pro",
 }

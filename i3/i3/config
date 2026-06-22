@@ -2,17 +2,18 @@
 # VARIABLES
 # ==============================
 set $mod Mod4
-set $terminal kitty
+set $terminal ghostty
 set $fileManager nautilus
 
 # ==============================
 # LOOK & FEEL
 # ==============================
-gaps inner 5
+gaps inner 3
 gaps outer 0
 
 default_border pixel 1
 default_floating_border pixel 1
+for_window [class="ghostty"] border pixel 1
 
 # class                 border    backgr.   text      indicator child_border
 client.focused          #458588   #076678   #ebdbb2   #83a598   #458588
@@ -29,7 +30,7 @@ exec_always --no-startup-id xrandr --output HDMI-0 --primary --mode 1920x1080 --
 # ==============================
 # AUTOSTART (exec-once)
 # ==============================
-exec_always --no-startup-id feh --bg-fill ~/Pictures/wpp2.png
+exec_always --no-startup-id feh --bg-fill ~/Pictures/wallpaper1.png
 exec_always killall polybar
 exec_always --no-startup-id ~/.config/polybar/launch.sh
 exec_always --no-startup-id xrdb -merge ~/.Xresources
@@ -42,7 +43,7 @@ exec --no-startup-id blueman-applet
 exec --no-startup-id mak
 exec --no-startup-id picom
 exec --no-startup-id kdeconnect-indicator
-exec --no-startup-id vesktop
+exec --no-startup-id helium-browser
 exec --no-startup-id i3-msg 'workspace 1; workspace 2; workspace 3; workspace 4; workspace 5; workspace 2'
 # Clipboard
 exec --no-startup-id clipmenud
