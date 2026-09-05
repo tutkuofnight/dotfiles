@@ -8,7 +8,7 @@ set $fileManager nautilus
 # ==============================
 # LOOK & FEEL
 # ==============================
-gaps inner 3
+gaps inner 0
 gaps outer 0
 
 default_border pixel 1
@@ -47,6 +47,7 @@ exec --no-startup-id helium-browser
 exec --no-startup-id i3-msg 'workspace 1; workspace 2; workspace 3; workspace 4; workspace 5; workspace 2'
 # Clipboard
 exec --no-startup-id clipmenud
+exec --no-startup-id /home/tutku/.local/bin/dikte
 
 # ==============================
 # INPUT
@@ -56,11 +57,16 @@ exec --no-startup-id clipmenud
 exec_always --no-startup-id setxkbmap -layout "us,tr" -option "grp:caps_toggle"
 
 exec --no-startup-id xset m 0 0
-exec --no-startup-id xinput --set-prop "Razer Razer DeathAdder V2 Mini" "libinput Accel Profile Enabled" 0, 1
-exec --no-startup-id xinput --set-prop "Razer Razer DeathAdder V2 Mini" "libinput Accel Speed" -0.5
+# Mouse hassasiyeti (Accel Speed: -1.0 en yavaş ... 1.0 en hızli, 0.0 varsayilan)
+# Not: imleci suren cihaz ana arabirim (id=8); "pointer:" oneki onu secer
+exec_always --no-startup-id sh -c 'xinput --set-prop "pointer:Razer Razer Basilisk V3 X HyperSpeed" "libinput Accel Profile Enabled" 0 1 0 2>/dev/null || xinput --set-prop "pointer:Razer Razer Basilisk V3 X HyperSpeed" "libinput Accel Profile Enabled" 0 1'
+exec_always --no-startup-id xinput --set-prop "pointer:Razer Razer Basilisk V3 X HyperSpeed" "libinput Accel Speed" 0.1
 # ==============================
 # KEYBINDS
 # ==============================
+
+# Toggle polybar
+bindsym $mod+space exec --no-startup-id polybar-msg cmd toggle
 
 # Terminal
 bindsym $mod+t exec $terminal
@@ -140,6 +146,10 @@ bindsym $mod+d scratchpad show
 
 # Clipboard history
 bindsym $mod+c exec "clipmenu"
+
+# Dikte voice dictation
+# bindsym Control+space exec --no-startup-id /home/tutku/.local/bin/dikte toggle
+# bindsym Control+Mod1+space exec --no-startup-id /home/tutku/.local/bin/dikte cancel
 
 # Drop caches
 bindsym $mod+Shift+l exec "sync && echo 3 | sudo tee /proc/sys/vm/drop_caches"

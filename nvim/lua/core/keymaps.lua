@@ -8,11 +8,10 @@ vim.g.maplocalleader = " "
 
 -- Genel
 map("n", "<leader>w", "<cmd>w<cr>", { desc = "Kaydet" })
-map("n", "<leader>q", "<cmd>q<cr>", { desc = "Kapat" })
+map("n", "<leader>Q", "<cmd>q<cr>", { desc = "Kapat" })
 map("n", "<Esc>", "<cmd>nohlsearch<cr>")
 
--- Pencere navigasyonu (Ctrl + hjkl)
-map("n", "<C-h>", "<C-w>h")
+-- Pencere navigasyonu (Ctrl + jkl)
 map("n", "<C-j>", "<C-w>j")
 map("n", "<C-k>", "<C-w>k")
 map("n", "<C-l>", "<C-w>l")
@@ -32,6 +31,7 @@ map("v", "<A-k>", ":m '<-2<cr>gv=gv")
 
 -- File tree
 map("n", "<leader>e", "<cmd>Neotree toggle<cr>", { desc = "Dosya ağacı" })
+map("n", "<leader>q", "<cmd>Neotree focus<cr>", { desc = "Dosya ağacına odaklan" })
 
 -- Telescope
 map("n", "<leader>ff", "<cmd>Telescope find_files<cr>", { desc = "Dosya bul" })

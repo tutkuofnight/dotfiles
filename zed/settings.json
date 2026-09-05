@@ -2,6 +2,12 @@
 // documentation: https://zed.dev/docs/configuring-zed
 
 {
+  "ui_font_size": 13.0,
+  "buffer_font_family": ".ZedMono",
+  "markdown_preview_font_size": 13.0,
+  "agent_buffer_font_size": 13.0,
+  "agent_ui_font_size": 14.0,
+  "ui_font_weight": 400.0,
   "agent_servers": {
     "kimi": {
       "type": "registry"
@@ -31,6 +37,11 @@
       "type": "registry"
     },
     "claude-acp": {
+      "default_config_options": {
+        "mode": "auto",
+        "model": "opus[1m]",
+        "fast": false
+      },
       "type": "registry"
     }
   },
@@ -69,6 +80,7 @@
     "dock": "left"
   },
   "project_panel": {
+    "hide_hidden": false,
     "dock": "left"
   },
   "window_decorations": "client",
@@ -81,10 +93,9 @@
     "default_mode": "insert",
     "use_system_clipboard": "always"
   },
-  "ui_font_family": ".SystemUIFont",
   "buffer_font_weight": 400.0,
   "terminal": {
-    "font_size": 13.0
+    "font_size": 12.0
   },
   "autosave": {
     "after_delay": {
@@ -92,7 +103,6 @@
     }
   },
   "icon_theme": "Material Icon Theme",
-  "ui_font_size": 14.0,
-  "buffer_font_size": 11.0,
-  "theme": "Colorizer Pro",
+  "buffer_font_size": 10.0,
+  "theme": "JetBrains Dark",
 }
