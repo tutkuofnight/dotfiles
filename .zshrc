@@ -60,6 +60,43 @@ export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 
 
+# Tmux oturumlarını yönet.
+alias tks='_tmux_kill_current_session'
+
+_tmux_kill_current_session() {
+  if [[ -z $TMUX ]]; then
+    print -u2 'tks komutunu tmux içinden çalıştır.'
+    return 1
+  fi
+
+  local session_id
+  session_id=$(tmux display-message -p '#{session_id}') || return
+
+  # Önce başka bir oturuma geç, sonra eski oturumu kapat.
+  tmux switch-client -l 2>/dev/null || tmux switch-client -n 2>/dev/null
+  tmux kill-session -t "$session_id"
+}
+
+tk() {
+  if [[ $# -ne 1 || -z $1 ]]; then
+    print -u2 'Kullanım: tk <oturum adı veya numarası>'
+    return 2
+  fi
+  tmux kill-session -t "=$1"
+}
+
+tg() {
+  if [[ $# -ne 1 || -z $1 ]]; then
+    print -u2 'Kullanım: tg <oturum adı veya numarası>'
+    return 2
+  fi
+  if [[ -n $TMUX ]]; then
+    tmux switch-client -t "=$1"
+  else
+    tmux attach-session -t "=$1"
+  fi
+}
+
 # Added by Antigravity CLI installer
 export PATH="/home/tutku/.local/bin:$PATH"
 
